@@ -9,3 +9,7 @@ CLI that lists packages used by a specified project.
 Assuming your go bin is on your path to use the CLI see help for available commands:
 
 `pkg-lister-go -help`
+
+To display packages used by a project:
+
+`pkg-lister-go -project <project-path>`
