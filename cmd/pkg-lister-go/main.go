@@ -9,6 +9,7 @@ import (
 	"regexp"
 
 	"github.com/ultrabluewolf/pkg-lister-go/cli"
+	"github.com/ultrabluewolf/pkg-lister-go/stringarray"
 )
 
 type FilePackages []string
@@ -16,15 +17,6 @@ type FilePackages []string
 type Project struct {
 	Path         string
 	FilePackages map[string]FilePackages
-}
-
-func Contains(arr []string, target string) bool {
-	m := make(map[string]struct{}, len(arr))
-	for _, s := range arr {
-		m[s] = struct{}{}
-	}
-	_, ok := m[target]
-	return ok
 }
 
 func GetFilenames(path string) []string {
@@ -40,7 +32,7 @@ func GetFilenames(path string) []string {
 			return err
 		}
 
-		if info.IsDir() && Contains(ignoredDirs, info.Name()) {
+		if info.IsDir() && stringarray.Contains(ignoredDirs, info.Name()) {
 			return filepath.SkipDir
 		}
 
