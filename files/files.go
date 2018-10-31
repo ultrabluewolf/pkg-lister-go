@@ -11,10 +11,7 @@ import (
 	"github.com/ultrabluewolf/pkg-lister-go/stringarray"
 )
 
-func GetFilenames(projectPath string) []string {
-	ignoredDirs := []string{".git"}
-	fileExtRE := regexp.MustCompile(`.*\.go`)
-
+func GetFilenames(projectPath string, fileExtRE *regexp.Regexp, ignoredDirs []string) []string {
 	filenames := []string{}
 
 	err := filepath.Walk(projectPath, func(path string, info os.FileInfo, err error) error {
